@@ -1,16 +1,29 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var menuItems = new List<dynamic>
+    {
+        new { Page = "/Index", Text = "Home" },
+        new { Page = "/About", Text = "About us" },
+        new { Page = "/Work", Text = "My work" },
+        new { Page = "/Contact", Text = "Contact us" }
+    };
+}
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KhumaloCraft</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KhumaloCraft.styles.css" asp-append-version="true" />
 </head>
+
 <body>
-    @await Html.PartialAsync("_Header.cshtml")
-    
+    @await Html.PartialAsync("_Header.cshtml", menuItems)
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -25,4 +38,5 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
