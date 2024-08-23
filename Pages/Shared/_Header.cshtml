@@ -28,11 +28,11 @@
                 <ul class="navbar-nav fs-6 fw-bold justify-content-lg-center flex-grow-1 mb-2">
                     @foreach (var item in Model)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == item.Page ? "active" : "")" asp-page="@item.Page">
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == item.Page ? "active" : "")" asp-page="@item.Page">
                                 @item.Text
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                     }
                 </ul>
 

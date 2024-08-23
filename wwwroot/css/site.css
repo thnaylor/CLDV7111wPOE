@@ -57,10 +57,14 @@ body {
 
 }
 
+<<<<<<< HEAD
 .navbar {
   height: 86px;
 }
 
+=======
+/* navbar */
+>>>>>>> feature/T-6-website-footer
 .nav-link {
   position: relative;
   display: inline-block;
