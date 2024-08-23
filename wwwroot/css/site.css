@@ -8,17 +8,13 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+  padding-top: 86px;
 }
 
 /* home css here */
@@ -59,4 +55,60 @@ body {
 /* product-items css here */
 .product-items {
 
+}
+
+<<<<<<< HEAD
+.navbar {
+  height: 86px;
+}
+
+=======
+/* navbar */
+>>>>>>> feature/T-6-website-footer
+.nav-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  padding-bottom: 5px;
+}
+
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #00aaff;
+  transition: width 0.3s ease;
+}
+
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* logo size */
+.logo-img {
+  width: 70px;
+}
+
+
+@media (max-width: 768px) {
+  .logo-img {
+      width: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-img {
+      width: 50px;
+  }
 }
