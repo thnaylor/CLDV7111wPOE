@@ -5,20 +5,74 @@
 }
 
 <div class="contact">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <img src="https://getbootstrap.com/docs/5.3/examples/heroes/bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-      </div>
+    <div class="row flex-lg-row-reverse align-items-center py-5 my-5">
+        <div class="col-lg-6">
+            <div class="d-flex flex-column justify-content-center px-5">
+                <div class="text-center text-lg-start mb-3">
+                    <h5 class="fs-4 fw-bold">Chat with us</h5>
 
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Contact us</h1>
-        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-        
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <i class="fs-4 bi bi-telephone pe-2"></i>
+                        <p><a class="text-decoration-none fs-5 fw-bold " href="tel:0212345678">(021) 234-5678</a></p>
+                    </div>
+
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <i class="fs-4  bi bi-envelope pe-2"></i>
+                        <p><a class="text-decoration-none text-wrap fs-5 fw-bold " href="mailto:sales@khumalocraftemporium.com">sales@khumalocraft.com</a></p>
+                    </div>
+
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <i class="fs-4 bi bi-geo-alt-fill pe-2"></i>
+                        <p class="fs-5 fw-bold text-decoration-none">
+                            301, Emporium road <br>
+                            Cape Town CBD <br>
+                            Western Cape <br>
+                            South Africa <br>
+                            8001
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center text-lg-start">
+                    <h5 class="fs-4 fw-bold">Social</h5>
+
+                    <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
+                        <a href="#"><i class="fs-1 bi bi-facebook"></i></a>
+                        <a href="#"><i class="fs-1 bi bi-twitter"></i></a>
+                        <a href="#"><i class="fs-1 bi bi-instagram"></i></a>
+                        <a href="#"><i class="fs-1 bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="col-lg-6">
+            <form>
+                <div class="form-group mb-4">
+                    <label class="fw-bold">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter name">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="fw-bold">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter email">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="fw-bold">Contact</label>
+                    <input type="text" class="form-control" placeholder="Enter contact">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="fw-bold">Message</label>
+                    <textarea class="form-control" placeholder="Write your message"></textarea>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary" type="button">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
