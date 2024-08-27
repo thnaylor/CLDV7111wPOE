@@ -75,7 +75,15 @@
         </div>
     </div>
 
-    @await Html.PartialAsync("Shared/Components/_FeaturedItems.cshtml")
-    @await Html.PartialAsync("Shared/Components/_FeaturedInfo.cshtml")
-    @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
+    <div class="row top-5 py-5">
+        @await Html.PartialAsync("Shared/Components/_FeaturedItems.cshtml")
+    </div>
+
+    <div class="row">
+        @await Html.PartialAsync("Shared/Components/_FeaturedInfo.cshtml")
+    </div>
+
+    <div class="row top-5">
+        @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
+    </div>
 </div>
