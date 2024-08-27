@@ -17,6 +17,13 @@ body {
   padding-top: 86px;
 }
 
+/* margin-helpers */
+.top-1 { margin-top: 10px; }
+.top-2 { margin-top: 20px; }
+.top-3 { margin-top: 30px; }
+.top-4 { margin-top: 40px; }
+.top-5 { margin-top: 50px; }
+
 /* home css here */
 .home {
   
@@ -57,14 +64,11 @@ body {
 
 }
 
-<<<<<<< HEAD
 .navbar {
   height: 86px;
 }
 
-=======
 /* navbar */
->>>>>>> feature/T-6-website-footer
 .nav-link {
   position: relative;
   display: inline-block;
