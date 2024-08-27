@@ -1,13 +1,35 @@
-<div class="product-items row">
-    <div class="col">
-        Product Items
-    </div>
+<div class="d-flex justify-content-center align-items-center flex-column py-5 my-5 rounded-4 border bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex flex-column flex-lg-row justify-content-end gap-2">
+                    <input type="text" class="form-control w-25 d-inline" placeholder="Search">
+                    <select class="form-select w-25 d-inline">
+                        <option selected>Latest</option>
+                        <option value="1">Oldest</option>
+                        <option value="2">Highest price</option>
+                        <option value="3">Lowest price</option>
+                    </select>
+                </div>
+            </div>
 
-    <div class="col">
-        Product Items
-    </div>
-    
-    <div class="col">
-        Product Items
+            <div class="w-100 border-top" style="border-top-color: black; margin: 2.5rem 0;"></div>
+
+            @for (int i = 1; i < 9; i++)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                    <div class="card border-2 shadow-sm">
+                        <img src="/images/product-items/@(i).png" alt="Product @i">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Handmade Craft @(i)</h5>
+                            <p class="card-text">Art product made from real Black Sea shells, handmade. The craft is made from Ukrainian Crimea.</p>
+                            <p class="card-text"><strong>Price:</strong> R2000</p>
+                            <button class="btn btn-primary">Add to Card</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
