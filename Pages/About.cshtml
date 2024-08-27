@@ -4,7 +4,7 @@
 }
 
 <div class="about">
-  <div class="row flex-lg-row-reverse align-items-center g-5 py-5 top-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 top-5">
     <div class="col-lg-6">
       <img src="~/images/shop.jpg" class="d-block mx-auto img-fluid rounded shadow" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
     </div>
@@ -81,11 +81,11 @@
 
     <hr class="featurette-divider">
 
-    <div class="top-5 py-5">
+    <div class="row top-5 py-5">
       @await Html.PartialAsync("Shared/Components/_FeaturedItems.cshtml")
     </div>
 
-    <div class="top-5">
+    <div class="row top-5">
       @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
     </div>
   </div>
