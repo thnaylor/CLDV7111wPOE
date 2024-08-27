@@ -1,74 +1,26 @@
-<div class="featured-info row my-5 p-5 align-items-center rounded-3 ">
-    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden">
-        <h2 class="fw-bold text-body-emphasis">Featured Products</h2>
+@{
+    var random = new Random();
+    var randomImage = random.Next(1, 17);
+}
+
+<div class="row align-items-md-center border py-5">
+    <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
+        <h4 class="fs-2 fw-bold mb-4">Featured Products</h4>
+        <img src="~/images/product-items/@(randomImage).png" alt="Alternate Text" height="350" class="border" />
     </div>
-    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-        <p class="fs-5 mb-3">
-            At Khumalo Crafts, we blend tradition with innovation to bring you exquisite, sustainable textiles and handcrafted products. Each piece is a testament to the rich heritage of African artistry, meticulously crafted by skilled artisans
-        </p>
 
-       
-    </div>
+    <div class="col-12 col-lg-6">
+        <div class="row row-cols-1 row-cols-sm-3">
 
-    
-</div>
+            @for (int i = 1; i < 7; i++)
+            {
+                var imageNumber = random.Next(1, 17);
 
-<div class="container px-4 py-5 border shadow-lg">
-
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-6 py-6">
-        <div class="col d-flex flex-column align-items-center gap-2">
-            <img src="~/images/product-items.jpeg" alt="Alternate Text" height="350" class="border"/>
-
-            <h2 class="fw-bold text-body-emphasis">Featured Product</h2>
-            
-        </div>
-
-        <div class="col">
-            <div class="row row-cols-1 row-cols-sm-3 g-5">
-                <div class="col d-flex flex-column gap-2 align-items-center">
-                  
-
-                    <img src="~/images/product-items.jpeg" alt="Handmade Craft" height="150" class="border" />
-                    <h4 class="fw-semibold mb-0 text-body-emphasis">Handmade Craft</h4>
-
+                <div class="col d-flex flex-column gap-2 align-items-center g-5">
+                    <img src="~/images/product-items/@(imageNumber).png" alt="Handmade Craft @(imageNumber)" height="150" class="border" />
+                    <h4 class="fs-6 fw-semibold mb-0 text-body-emphasis">Handmade Craft @(imageNumber)</h4>
                 </div>
-                <div class="col d-flex flex-column gap-2 align-items-center">
-                  
-
-                    <img src="~/images/product-items.jpeg" alt="Handmade Craft" height="150" class="border" />
-                    <h4 class="fw-semibold mb-0 text-body-emphasis">Handmade Craft</h4>
-
-                </div>
-                <div class="col d-flex flex-column gap-2 align-items-center">
-                  
-
-                    <img src="~/images/product-items.jpeg" alt="Handmade Craft" height="150" class="border" />
-                    <h4 class="fw-semibold mb-0 text-body-emphasis">Handmade Craft</h4>
-
-                </div>
-                <div class="col d-flex flex-column gap-2 align-items-center">
-                  
-
-                    <img src="~/images/product-items.jpeg" alt="Handmade Craft" height="150" class="border" />
-                    <h4 class="fw-semibold mb-0 text-body-emphasis">Handmade Craft</h4>
-
-                </div>
-                <div class="col d-flex flex-column gap-2 align-items-center">
-                  
-
-                    <img src="~/images/product-items.jpeg" alt="Handmade Craft" height="150" class="border" />
-                    <h4 class="fw-semibold mb-0 text-body-emphasis align-items-center">Handmade Craft</h4>
-
-                </div>
-                <div class="col d-flex flex-column gap-2 align-items-center">
-                  
-
-                    <img src="~/images/product-items.jpeg" alt="Handmade Craft" height="150" class="border" />
-                    <h4 class="fw-semibold mb-0 text-body-emphasis">Handmade Craft</h4>
-
-                </div>
-                
-            </div>
+            }
         </div>
     </div>
 </div>
