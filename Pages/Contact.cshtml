@@ -6,10 +6,10 @@
 
 <div class="contact">
     <div class="row flex-lg-row-reverse align-items-center py-5 my-5">
-        <div class="col-lg-6">
-            <div class="d-flex flex-column justify-content-center px-5">
+        <div class="col-lg-6 order-1 order-lg-0">
+            <div class="d-flex flex-column justify-content-center px-5 offset-lg-3">
                 <div class="text-center text-lg-start mb-3">
-                    <h5 class="fs-4 fw-bold">Chat with us</h5>
+                    <h5 class="fs-2 fw-bold">Chat with us</h5>
 
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <i class="fs-4 bi bi-telephone pe-2"></i>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="text-center text-lg-start">
-                    <h5 class="fs-4 fw-bold">Social</h5>
+                    <h5 class="fs-2 fw-bold">Find us on</h5>
 
                     <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
                         <a href="#"><i class="fs-1 bi bi-facebook"></i></a>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 order-0 order-lg-1 mb-5">
             <form>
                 <div class="form-group mb-4">
                     <label class="fw-bold">Name</label>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
     @await Html.PartialAsync("Shared/Components/_FeaturedItems.cshtml")
+    @await Html.PartialAsync("Shared/Components/_FeaturedInfo.cshtml")
     @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
 </div>
