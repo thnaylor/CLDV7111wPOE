@@ -1,20 +1,22 @@
-using Microsoft.AspNetCore.Mvc;
+using KhumaloCraft.Data;
+using KhumaloCraft.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KhumaloCraft.Pages
 {
     public class WorkModel : PageModel
-    {
-        private readonly ILogger<WorkModel> _logger;
+    {   
+        private readonly ApplicationDbContext _db;
+        public List<Product> ProductList { get; set; } = new List<Product>();
 
-        public WorkModel(ILogger<WorkModel> logger)
+        public WorkModel(ApplicationDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         public void OnGet()
         {
-
+            ProductList = _db.Product.ToList();
         }
     }
 }
