@@ -1,15 +1,15 @@
-using Microsoft.EntityFrameworkCore;
-using KhumaloCraft.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddHttpClient("BusinessAPI", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5068/");  // Replace with the actual URL of your API
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 
 var app = builder.Build();
 

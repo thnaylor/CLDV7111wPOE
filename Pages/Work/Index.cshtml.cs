@@ -2,7 +2,7 @@ using System.Text.Json;
 using KhumaloCraft.Web.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace KhumaloCraft.Pages
+namespace KhumaloCraft.Pages.Work
 {
     public class IndexModel : PageModel
     {

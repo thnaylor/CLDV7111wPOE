@@ -1,22 +1,37 @@
-﻿using KhumaloCraft.Data;
-using KhumaloCraft.Models;
+﻿using System.Text.Json;
+using KhumaloCraft.Web.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KhumaloCraft.Pages
 {
     public class ContactModel : PageModel
-    {   
-        private readonly ApplicationDbContext _db;
-        public List<Product> ProductList { get; set; } = new List<Product>();
+    {
+        private readonly ILogger<IndexModel> _logger;
+        private readonly HttpClient _httpClient;
+        public List<ProductDTO> ProductList { get; set; } = new List<ProductDTO>();
 
-        public ContactModel(ApplicationDbContext db)
+        public ContactModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory)
         {
-            _db = db;
+            _logger = logger;
+            _httpClient = httpClientFactory.CreateClient("BusinessAPI");
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            ProductList = _db.Product.ToList();
+            var response = await _httpClient.GetAsync("api/products");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                ProductList = JsonSerializer.Deserialize<List<ProductDTO>>(jsonResponse, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }) ?? new List<ProductDTO>();
+            }
+            else
+            {
+                _logger.LogError("Error fetching products from the API");
+            }
         }
     }
 }

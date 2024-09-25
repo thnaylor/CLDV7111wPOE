@@ -1,5 +1,5 @@
 ﻿@page
-@model WorkModel
+@model KhumaloCraft.Pages.Work.IndexModel
 @{
     ViewData["Title"] = "My work";
 }
@@ -20,10 +20,10 @@
     </div>
 
     <div class="row">
-        @await Html.PartialAsync("Shared/Components/_ProductItems.cshtml", Model.ProductList)
+        @await Html.PartialAsync("../Shared/Components/_ProductItems.cshtml", Model.ProductList)
     </div>
 
     <div class="row top-5">
-        @await Html.PartialAsync("Shared/Components/_InfoBanner.cshtml")
+        @await Html.PartialAsync("../Shared/Components/_InfoBanner.cshtml")
     </div>
 </div>
