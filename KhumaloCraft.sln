@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloCraft.Business", ".\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloCraft.BusinessAPI", ".\KhumaloCraft.BusinessAPI\KhumaloCraft.BusinessAPI.csproj", "{98945DE8-AD22-40BF-9984-EDF1DA8B384B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloCraft.Shared", "KhumaloCraft.Shared\KhumaloCraft.Shared.csproj", "{38CB037E-4CE6-42E2-936B-B39C6FFC6387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{98945DE8-AD22-40BF-9984-EDF1DA8B384B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98945DE8-AD22-40BF-9984-EDF1DA8B384B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98945DE8-AD22-40BF-9984-EDF1DA8B384B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CB037E-4CE6-42E2-936B-B39C6FFC6387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CB037E-4CE6-42E2-936B-B39C6FFC6387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CB037E-4CE6-42E2-936B-B39C6FFC6387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CB037E-4CE6-42E2-936B-B39C6FFC6387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "KhumaloCraft.Business/1.0.0": {
         "dependencies": {
-          "KhumaloCraft.Data": "1.0.0"
+          "KhumaloCraft.Data": "1.0.0",
+          "KhumaloCraft.Shared": "1.0.0"
         },
         "runtime": {
           "KhumaloCraft.Business.dll": {}
@@ -628,6 +629,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "KhumaloCraft.Shared/1.0.0": {
+        "runtime": {
+          "KhumaloCraft.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1058,6 +1067,11 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "KhumaloCraft.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "KhumaloCraft.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

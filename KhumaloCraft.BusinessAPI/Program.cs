@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using KhumaloCraft.Business.Services;
 using KhumaloCraft.Data.Data;
 using KhumaloCraft.Data.Entities;
+using KhumaloCraft.Data.Repositories;
+using KhumaloCraft.Data.Repositories.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,9 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+// Register the ProductRepository with its interface
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 // Register the business service
 builder.Services.AddScoped<IProductService, ProductService>();

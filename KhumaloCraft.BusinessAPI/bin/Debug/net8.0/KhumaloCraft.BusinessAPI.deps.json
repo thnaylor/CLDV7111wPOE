@@ -976,7 +976,8 @@
       },
       "KhumaloCraft.Business/1.0.0": {
         "dependencies": {
-          "KhumaloCraft.Data": "1.0.0"
+          "KhumaloCraft.Data": "1.0.0",
+          "KhumaloCraft.Shared": "1.0.0"
         },
         "runtime": {
           "KhumaloCraft.Business.dll": {
@@ -993,6 +994,14 @@
         },
         "runtime": {
           "KhumaloCraft.Data.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "KhumaloCraft.Shared/1.0.0": {
+        "runtime": {
+          "KhumaloCraft.Shared.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1600,6 +1609,11 @@
       "sha512": ""
     },
     "KhumaloCraft.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "KhumaloCraft.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

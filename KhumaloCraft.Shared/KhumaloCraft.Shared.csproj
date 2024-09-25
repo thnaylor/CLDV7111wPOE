@@ -1,10 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\KhumaloCraft.Data\KhumaloCraft.Data.csproj" />
-    <ProjectReference Include="..\KhumaloCraft.Shared\KhumaloCraft.Shared.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

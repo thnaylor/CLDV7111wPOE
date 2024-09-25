@@ -1083,6 +1083,16 @@
         "runtime": {
           "bin/placeholder/KhumaloCraft.Data.dll": {}
         }
+      },
+      "KhumaloCraft.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/KhumaloCraft.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KhumaloCraft.Shared.dll": {}
+        }
       }
     }
   },
@@ -2933,11 +2943,17 @@
       "type": "project",
       "path": "../KhumaloCraft.Data/KhumaloCraft.Data.csproj",
       "msbuildProject": "../KhumaloCraft.Data/KhumaloCraft.Data.csproj"
+    },
+    "KhumaloCraft.Shared/1.0.0": {
+      "type": "project",
+      "path": "../KhumaloCraft.Shared/KhumaloCraft.Shared.csproj",
+      "msbuildProject": "../KhumaloCraft.Shared/KhumaloCraft.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "KhumaloCraft.Data >= 1.0.0"
+      "KhumaloCraft.Data >= 1.0.0",
+      "KhumaloCraft.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2970,6 +2986,9 @@
           "projectReferences": {
             "E:\\!University\\Rosebank College\\2025\\Semester 2\\CLDV7111\\POE\\KhumaloCraftProject\\KhumaloCraft.Data\\KhumaloCraft.Data.csproj": {
               "projectPath": "E:\\!University\\Rosebank College\\2025\\Semester 2\\CLDV7111\\POE\\KhumaloCraftProject\\KhumaloCraft.Data\\KhumaloCraft.Data.csproj"
+            },
+            "E:\\!University\\Rosebank College\\2025\\Semester 2\\CLDV7111\\POE\\KhumaloCraftProject\\KhumaloCraft.Shared\\KhumaloCraft.Shared.csproj": {
+              "projectPath": "E:\\!University\\Rosebank College\\2025\\Semester 2\\CLDV7111\\POE\\KhumaloCraftProject\\KhumaloCraft.Shared\\KhumaloCraft.Shared.csproj"
             }
           }
         }
