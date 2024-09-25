@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.JsonPatch;
 using KhumaloCraft.Business.Services;
 using KhumaloCraft.Shared.DTOs.ProductDTO;
 
@@ -36,6 +37,30 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         {
             await _productService.AddProduct(productDTO);
             return Ok("Product added successfully");
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchProduct(int id, [FromBody] JsonPatchDocument<ProductDTO> patchDoc)
+        {
+            if (patchDoc == null) return BadRequest();
+
+            // Get the product by ID
+            var productDTO = await _productService.GetProductById(id);
+            if (productDTO == null) return NotFound();
+
+            // Apply the patch
+            patchDoc.ApplyTo(productDTO);
+
+            // Validate the patched product explicitly
+            if (!TryValidateModel(productDTO))
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Save the changes
+            await _productService.UpdateProduct(productDTO);
+
+            return Ok(productDTO);
         }
 
         [HttpPut("{id}")]
