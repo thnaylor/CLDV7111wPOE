@@ -21,7 +21,7 @@ public static class SeedData
     }
 
     // Seed Admin User
-    var adminUser = new User { UserName = "admin", Email = "admin@example.com" };
+    var adminUser = new User { UserName = "admin", Email = "admin@example.com", FirstName = "Super", LastName = "Admin" };
     var userExist = await userManager.FindByEmailAsync(adminUser.Email);
     if (userExist == null)
     {
