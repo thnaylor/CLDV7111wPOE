@@ -29,14 +29,18 @@ public class CategoryRepository : ICategoryRepository
     await _dbContext.Categories.AddAsync(category);
   }
 
-  public async Task UpdateCategoryAsync(Category category)
+  public Task UpdateCategoryAsync(Category category)
   {
     _dbContext.Categories.Update(category);
+
+    return Task.CompletedTask;
   }
 
-  public async Task DeleteCategoryAsync(Category category)
+  public Task DeleteCategoryAsync(Category category)
   {
     _dbContext.Categories.Remove(category);
+
+    return Task.CompletedTask;
   }
 
   public async Task SaveChangesAsync()

@@ -1,6 +1,6 @@
 using KhumaloCraft.Data.Entities;
 
-namespace KhumaloCraft.Data.Repositories;
+namespace KhumaloCraft.Data.Repositories.Interfaces;
 
 public interface IProductRepository
 {

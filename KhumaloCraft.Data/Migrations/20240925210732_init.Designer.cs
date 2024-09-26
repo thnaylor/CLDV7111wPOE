@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KhumaloCraft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240925171258_init")]
+    [Migration("20240925210732_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -40,7 +40,7 @@ namespace KhumaloCraft.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new

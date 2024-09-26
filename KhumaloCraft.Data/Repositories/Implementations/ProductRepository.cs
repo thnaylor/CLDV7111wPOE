@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using KhumaloCraft.Data.Data;
 using KhumaloCraft.Data.Entities;
+using KhumaloCraft.Data.Repositories.Interfaces;
 
 namespace KhumaloCraft.Data.Repositories.Implementations;
 

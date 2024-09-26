@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using KhumaloCraft.Business.Services;
+using KhumaloCraft.Business.Interfaces;
 using KhumaloCraft.Data.Data;
 using KhumaloCraft.Data.Entities;
-using KhumaloCraft.Data.Repositories;
 using KhumaloCraft.Data.Repositories.Implementations;
+using KhumaloCraft.Data.Repositories.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,9 +45,11 @@ builder.Services.AddControllers();
 
 // Register the ProductRepository with its interface
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 // Register the business service
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

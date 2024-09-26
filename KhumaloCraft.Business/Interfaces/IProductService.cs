@@ -1,6 +1,6 @@
 using KhumaloCraft.Shared.DTOs.ProductDTO;
 
-namespace KhumaloCraft.Business.Services;
+namespace KhumaloCraft.Business.Interfaces;
 
 public interface IProductService
 {

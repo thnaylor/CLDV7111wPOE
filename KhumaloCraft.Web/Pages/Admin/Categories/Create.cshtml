@@ -1,0 +1,15 @@
+﻿@page
+@model KhumaloCraft.Web.Pages.Admin.Categories.CreateModel
+@{
+}
+
+<h2>Create New Category</h2>
+
+<form method="post">
+  <div class="form-group">
+    <label for="CategoryName">Category Name</label>
+    <input type="text" class="form-control" asp-for="Category.CategoryName" />
+    <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
