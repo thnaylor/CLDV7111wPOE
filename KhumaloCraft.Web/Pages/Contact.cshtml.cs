@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using KhumaloCraft.Shared.DTOs.ProductDTO;
+using KhumaloCraft.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KhumaloCraft.Pages

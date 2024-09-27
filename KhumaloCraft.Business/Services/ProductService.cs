@@ -1,7 +1,7 @@
 using KhumaloCraft.Business.Interfaces;
 using KhumaloCraft.Data.Entities;
 using KhumaloCraft.Data.Repositories.Interfaces;
-using KhumaloCraft.Shared.DTOs.ProductDTO;
+using KhumaloCraft.Shared.DTOs;
 
 namespace KhumaloCraft.Business.Services;
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
-using KhumaloCraft.Shared.DTOs.ProductDTO;
+using KhumaloCraft.Shared.DTOs;
 using KhumaloCraft.Business.Interfaces;
 
 namespace KhumaloCraft.BusinessAPI.Controllers

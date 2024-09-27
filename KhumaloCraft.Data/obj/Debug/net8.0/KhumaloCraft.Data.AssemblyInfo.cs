@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KhumaloCraft.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d291d80b5d1117caf5c03944aab4b36416dc0161")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f7bd3c47b7794867e564330772084e5cf098e56")]
 [assembly: System.Reflection.AssemblyProductAttribute("KhumaloCraft.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KhumaloCraft.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,4 @@
-using KhumaloCraft.Shared.DTOs.ProductDTO;
+using KhumaloCraft.Shared.DTOs;
 
 namespace KhumaloCraft.Business.Interfaces;
 

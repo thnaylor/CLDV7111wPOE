@@ -1,7 +1,7 @@
 @model List<ProductDTO>
 @{
     var random = new Random();
-    var randomImage = random.Next(0, 15);
+    var randomImage = random.Next(0, Model.Count);
     var usedIndices = new HashSet<int> { randomImage };
 }
 
@@ -20,7 +20,7 @@
 
                 do
                 {
-                    imageNumber = random.Next(0, 15);
+                    imageNumber = random.Next(0, Model.Count);
                 } while (usedIndices.Contains(imageNumber));
 
                 usedIndices.Add(imageNumber);

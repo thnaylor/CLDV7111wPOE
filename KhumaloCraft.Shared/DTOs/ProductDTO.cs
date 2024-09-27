@@ -1,6 +1,4 @@
-using System;
-
-namespace KhumaloCraft.Shared.DTOs.ProductDTO;
+namespace KhumaloCraft.Shared.DTOs;
 
 public class ProductDTO
 {
@@ -10,5 +8,5 @@ public class ProductDTO
   public string Description { get; set; }
   public string ImageSrc { get; set; }
   public int CategoryId { get; set; }
-  public string CategoryName { get; set; }
+  public string? CategoryName { get; set; }
 }
