@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
 using KhumaloCraft.Shared.DTOs;
 using KhumaloCraft.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KhumaloCraft.BusinessAPI.Controllers
 {
@@ -33,6 +34,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddProduct([FromBody] ProductDTO productDTO)
         {
             await _productService.AddProduct(productDTO);
@@ -40,6 +42,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PatchProduct(int id, [FromBody] JsonPatchDocument<ProductDTO> patchDoc)
         {
             if (patchDoc == null) return BadRequest();
@@ -64,6 +67,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductDTO productDTO)
         {
             if (id != productDTO.ProductId) return BadRequest("Product ID mismatch");
@@ -73,6 +77,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await _productService.DeleteProduct(id);
