@@ -16,7 +16,7 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-          <form method="post" asp-page-handler="Logout">
+          <form method="post" asp-page="/Auth/Logout">
             <button type="submit" class="btn btn-link">
               <i class="bi-box-arrow-right" style="font-size: 2rem; color: white;"></i>
             </button>
