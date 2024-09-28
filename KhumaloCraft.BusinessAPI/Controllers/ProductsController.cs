@@ -18,6 +18,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _productService.GetAllProducts();
@@ -26,6 +27,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetProductById(int id)
         {
             var product = await _productService.GetProductById(id);

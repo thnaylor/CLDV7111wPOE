@@ -17,6 +17,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllCategories()
     {
       var categories = await _categoryService.GetAllCategories();
@@ -24,6 +25,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetCategoryById(int id)
     {
       var category = await _categoryService.GetCategoryById(id);

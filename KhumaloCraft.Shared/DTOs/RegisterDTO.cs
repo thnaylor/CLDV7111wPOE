@@ -12,6 +12,10 @@ public class RegisterDTO
   public string Password { get; set; }
 
   [Required]
+  [MinLength(6)]
+  public string ConfirmPassword { get; set; }
+
+  [Required]
   public string FirstName { get; set; }
 
   [Required]

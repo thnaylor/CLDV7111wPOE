@@ -7,18 +7,18 @@ using KhumaloCraft.Shared.DTOs;
 
 namespace KhumaloCraft.Pages.Auth
 {
-  public class LoginModel : PageModel
+  public class RegisterModel : PageModel
   {
     private readonly HttpClient _httpClient;
-    private readonly ILogger<LoginModel> _logger;
+    private readonly ILogger<RegisterModel> _logger;
 
-    // Bind the LoginDTO to handle form data from Razor Page
+    // Bind the RegisterDTO to handle form data from Razor Page
     [BindProperty]
-    public LoginDTO LoginDTO { get; set; }
+    public RegisterDTO RegisterDTO { get; set; }
 
     public string ErrorMessage { get; set; }
 
-    public LoginModel(IHttpClientFactory httpClientFactory, ILogger<LoginModel> logger)
+    public RegisterModel(IHttpClientFactory httpClientFactory, ILogger<RegisterModel> logger)
     {
       _httpClient = httpClientFactory.CreateClient("BusinessAPI");
       _logger = logger;
@@ -36,21 +36,30 @@ namespace KhumaloCraft.Pages.Auth
 
     public async Task<IActionResult> OnPostAsync()
     {
+      // First, check if the passwords match
+      if (RegisterDTO.Password != RegisterDTO.ConfirmPassword)
+      {
+        ModelState.AddModelError("RegisterDTO.ConfirmPassword", "The password and confirmation password do not match.");
+        return Page();
+      }
+
       if (!ModelState.IsValid)
       {
         return Page();
       }
 
-      // Prepare login data
-      var loginData = new
+      // Prepare registration data
+      var registerData = new
       {
-        Email = LoginDTO.Email,
-        Password = LoginDTO.Password
+        FirstName = RegisterDTO.FirstName,
+        LastName = RegisterDTO.LastName,
+        Email = RegisterDTO.Email,
+        Password = RegisterDTO.Password
       };
 
-      // Send login request to the API
-      var jsonContent = new StringContent(JsonSerializer.Serialize(loginData), Encoding.UTF8, "application/json");
-      var response = await _httpClient.PostAsync("api/auth/login", jsonContent);
+      // Send registration request to the API
+      var jsonContent = new StringContent(JsonSerializer.Serialize(registerData), Encoding.UTF8, "application/json");
+      var response = await _httpClient.PostAsync("api/auth/register", jsonContent);
 
       if (response.IsSuccessStatusCode)
       {
@@ -68,14 +77,14 @@ namespace KhumaloCraft.Pages.Auth
           Expires = DateTimeOffset.UtcNow.AddHours(1) // Token expires in 1 hour
         });
 
-        // Redirect to a protected page or homepage after login
+        // Redirect to a protected page or homepage after successful registration
         return RedirectToPage("/Index");
       }
       else
       {
         // Log the error and display a message to the user
-        ErrorMessage = "Invalid email or password.";
-        _logger.LogWarning("Failed login attempt for user: {Email}", LoginDTO.Email);
+        ErrorMessage = "Registration failed. Please try again.";
+        _logger.LogWarning("Failed registration attempt for user: {Email}", RegisterDTO.Email);
         return Page();
       }
     }

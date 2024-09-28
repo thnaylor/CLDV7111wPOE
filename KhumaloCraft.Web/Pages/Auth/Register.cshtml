@@ -1,0 +1,50 @@
+﻿@page
+@model KhumaloCraft.Pages.Auth.RegisterModel
+@{
+  ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+@if (Model.ErrorMessage != null)
+{
+  <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+  <div class="form-group">
+    <label asp-for="RegisterDTO.FirstName"></label>
+    <input asp-for="RegisterDTO.FirstName" class="form-control" />
+    <span asp-validation-for="RegisterDTO.FirstName" class="text-danger"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="RegisterDTO.LastName"></label>
+    <input asp-for="RegisterDTO.LastName" class="form-control" />
+    <span asp-validation-for="RegisterDTO.LastName" class="text-danger"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="RegisterDTO.Email"></label>
+    <input asp-for="RegisterDTO.Email" class="form-control" />
+    <span asp-validation-for="RegisterDTO.Email" class="text-danger"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="RegisterDTO.Password"></label>
+    <input asp-for="RegisterDTO.Password" type="password" class="form-control" />
+    <span asp-validation-for="RegisterDTO.Password" class="text-danger"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="RegisterDTO.ConfirmPassword"></label>
+    <input asp-for="RegisterDTO.ConfirmPassword" type="password" class="form-control" />
+    <span asp-validation-for="RegisterDTO.ConfirmPassword" class="text-danger"></span>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}

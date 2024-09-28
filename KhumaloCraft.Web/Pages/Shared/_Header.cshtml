@@ -10,13 +10,18 @@
       </div>
 
       <div class="order-0 order-lg-3 d-flex gap-2 align-items-center px-2">
-        <button type="button" class="btn btn-link d-none d-md-block">
-          <i class="bi bi-search" style="font-size: 2rem; color: white;"></i>
-        </button>
-
         <button type="button" class="btn btn-link">
           <i class="bi bi-cart" style="font-size: 2rem; color: white;"></i>
         </button>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+          <form method="post" asp-page-handler="Logout">
+            <button type="submit" class="btn btn-link">
+              <i class="bi-box-arrow-right" style="font-size: 2rem; color: white;"></i>
+            </button>
+          </form>
+        }
 
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -34,14 +39,22 @@
               </a>
             </li>
           }
+
+          <hr class="text-white">
+          <!-- Admin dropdown for logged-in users with Admin role (only visible on larger screens) -->
+          @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+          {
+            @foreach (var item in Model.Item2)
+            {
+              <li class="nav-item d-lg-none">
+                <a class="nav-link text-success" asp-page="@item.Page">@item.Text</a>
+              </li>
+            }
+          }
         </ul>
 
-        <div class="d-lg-flex flex-stretch-1 justify-content-lg-end bg-dark">
-          <form role="search" class="d-flex d-md-none d-lg-none align-items-center me-lg-2 mb-3 mb-md-0 px-2">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-          </form>
-
-          @if (!User.Identity.IsAuthenticated)
+        <div class="d-none d-lg-flex flex-stretch-1 justify-content-lg-end bg-dark">
+          @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
           {
             <div class="dropdown">
               <button class="btn btn-success dropdown-toggle fs-6 fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,14 +72,17 @@
               </ul>
             </div>
           }
-          else
+          
+          @if (!User.Identity.IsAuthenticated)
           {
             <div class="d-grid d-lg-flex gap-2 align-items-center me-lg-2 p-2">
               <a asp-page="/Auth/Login">
                 <button class="btn btn-primary fw-bold">Sign in</button>
               </a>
 
-              <button class="btn btn-secondary fw-bold">Sign up</button>
+              <a asp-page="/Auth/Register">
+                <button class="btn btn-secondary fw-bold">Sign up</button>
+              </a>
             </div>
           }
         </div>

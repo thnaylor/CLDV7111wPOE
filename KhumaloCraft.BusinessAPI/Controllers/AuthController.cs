@@ -9,6 +9,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
+  [AllowAnonymous]
   public class AuthController : ControllerBase
   {
     private readonly UserManager<User> _userManager;
