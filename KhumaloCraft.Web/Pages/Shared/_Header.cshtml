@@ -28,11 +28,11 @@
         <ul class="navbar-nav bg-dark fs-6 fw-bold justify-content-lg-center flex-grow-1 px-2">
           @foreach (var item in Model.Item1)
           {
-            <li class="nav-item">
-              <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == item.Page ? "active" : "")" asp-page="@item.Page">
-                @item.Text
-              </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link @(ViewContext.RouteData.Values[" page"]?.ToString()==item.Page ? "active" : "" )" asp-page="@item.Page">
+              @item.Text
+            </a>
+          </li>
           }
         </ul>
 
@@ -43,11 +43,11 @@
           <ul class="dropdown-menu">
             @foreach (var item in Model.Item2)
             {
-              <li>
-                <a class="dropdown-item fs-6 fw-bold" asp-page="@item.Page">
-                  @item.Text
-                </a>
-              </li>
+            <li>
+              <a class="dropdown-item fs-6 fw-bold" asp-page="@item.Page">
+                @item.Text
+              </a>
+            </li>
             }
           </ul>
         </div>
@@ -59,7 +59,10 @@
           </form>
 
           <div class="d-grid d-lg-flex gap-2 align-items-center me-lg-2 p-2">
-            <button class="btn btn-primary fw-bold">Sign in</button>
+            <a asp-page="/Auth/Login">
+              <button class="btn btn-primary fw-bold">Sign in</button>
+            </a>
+
             <button class="btn btn-secondary fw-bold">Sign up</button>
           </div>
         </div>
