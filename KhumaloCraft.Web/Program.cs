@@ -1,24 +1,80 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddRazorPages();
 
+// Add HttpClient for API calls
 builder.Services.AddHttpClient("BusinessAPI", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5068/");  // Replace with the actual URL of your API
+  client.BaseAddress = new Uri("http://localhost:5068/");  // Replace with the actual URL of your API
 });
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+// Configure JWT Bearer authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+      options.TokenValidationParameters = new TokenValidationParameters
+      {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+      };
+
+      // Read the JWT from the cookies
+      options.Events = new JwtBearerEvents
+      {
+        OnMessageReceived = context =>
+        {
+          var token = context.Request.Cookies["AuthToken"];
+          if (!string.IsNullOrEmpty(token))
+          {
+            context.Token = token;
+          }
+          return Task.CompletedTask;
+        },
+        OnChallenge = context =>
+        {
+          if (!context.HttpContext.User.Identity.IsAuthenticated)
+          {
+            context.Response.Redirect("/Auth/Login");
+          }
+          return Task.CompletedTask;
+        },
+        OnForbidden = context =>
+        {
+          context.Response.Redirect("/Auth/AccessDenied");
+          return Task.CompletedTask;
+        }
+      };
+    });
+
+// Authorization policy
+builder.Services.AddAuthorization(options =>
+{
+  options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
+
+// Apply Admin-only authorization globally to the /Admin folder
+builder.Services.AddRazorPages(options =>
+{
+  options.Conventions.AuthorizeFolder("/Admin", "AdminOnly");
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+  app.UseExceptionHandler("/Error");
+  app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -26,6 +82,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Add authentication and authorization middleware
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

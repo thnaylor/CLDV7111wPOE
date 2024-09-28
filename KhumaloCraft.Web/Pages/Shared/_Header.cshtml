@@ -28,43 +28,47 @@
         <ul class="navbar-nav bg-dark fs-6 fw-bold justify-content-lg-center flex-grow-1 px-2">
           @foreach (var item in Model.Item1)
           {
-          <li class="nav-item">
-            <a class="nav-link @(ViewContext.RouteData.Values[" page"]?.ToString()==item.Page ? "active" : "" )" asp-page="@item.Page">
-              @item.Text
-            </a>
-          </li>
-          }
-        </ul>
-
-        <div class="dropdown">
-          <button class="btn btn-success dropdown-toggle fs-6 fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-          </button>
-          <ul class="dropdown-menu">
-            @foreach (var item in Model.Item2)
-            {
-            <li>
-              <a class="dropdown-item fs-6 fw-bold" asp-page="@item.Page">
+            <li class="nav-item">
+              <a class="nav-link @(ViewContext.RouteData.Values[" page"]?.ToString()==item.Page ? "active" : "" )" asp-page="@item.Page">
                 @item.Text
               </a>
             </li>
-            }
-          </ul>
-        </div>
-
+          }
+        </ul>
 
         <div class="d-lg-flex flex-stretch-1 justify-content-lg-end bg-dark">
           <form role="search" class="d-flex d-md-none d-lg-none align-items-center me-lg-2 mb-3 mb-md-0 px-2">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
           </form>
 
-          <div class="d-grid d-lg-flex gap-2 align-items-center me-lg-2 p-2">
-            <a asp-page="/Auth/Login">
-              <button class="btn btn-primary fw-bold">Sign in</button>
-            </a>
+          @if (!User.Identity.IsAuthenticated)
+          {
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle fs-6 fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Admin
+              </button>
+              <ul class="dropdown-menu">
+                @foreach (var item in Model.Item2)
+                {
+                  <li>
+                    <a class="dropdown-item fs-6 fw-bold" asp-page="@item.Page">
+                      @item.Text
+                    </a>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+          else
+          {
+            <div class="d-grid d-lg-flex gap-2 align-items-center me-lg-2 p-2">
+              <a asp-page="/Auth/Login">
+                <button class="btn btn-primary fw-bold">Sign in</button>
+              </a>
 
-            <button class="btn btn-secondary fw-bold">Sign up</button>
-          </div>
+              <button class="btn btn-secondary fw-bold">Sign up</button>
+            </div>
+          }
         </div>
       </div>
     </div>

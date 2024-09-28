@@ -40,8 +40,10 @@ namespace KhumaloCraft.BusinessAPI.Controllers
       if (!result.Succeeded)
         return Unauthorized("Invalid email or password");
 
+      var roles = await _userManager.GetRolesAsync(user);
+
       // Generate the JWT token for the user
-      var token = _tokenService.GenerateToken(user.Id, user.Email, user.FirstName, user.LastName);
+      var token = _tokenService.GenerateToken(user.Id, user.Email, user.FirstName, user.LastName, roles);
 
       return Ok(new { Token = token });
     }
@@ -75,7 +77,9 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         return BadRequest(result.Errors); // Return any errors if user creation fails
       }
 
-      var token = _tokenService.GenerateToken(user.Id, user.Email, user.FirstName, user.LastName);
+      var roles = await _userManager.GetRolesAsync(user);
+
+      var token = _tokenService.GenerateToken(user.Id, user.Email, user.FirstName, user.LastName, roles);
       return Ok(new { Token = token });
     }
   }

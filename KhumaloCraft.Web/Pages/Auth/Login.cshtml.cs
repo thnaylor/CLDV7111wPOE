@@ -26,6 +26,16 @@ namespace KhumaloCraft.Pages.Auth
       _logger = logger;
     }
 
+    public IActionResult OnGet()
+    {
+      if (User.Identity.IsAuthenticated)
+      {
+        return RedirectToPage("/Index");
+      }
+
+      return Page();
+    }
+
     public async Task<IActionResult> OnPostAsync()
     {
       if (!ModelState.IsValid)

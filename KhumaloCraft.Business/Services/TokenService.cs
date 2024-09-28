@@ -16,10 +16,11 @@ namespace KhumaloCraft.Business.Services
       _configuration = configuration;
     }
 
-    public string GenerateToken(string userId, string email, string firstName, string lastName)
+    // Add roles to the token generation method
+    public string GenerateToken(string userId, string email, string firstName, string lastName, IList<string> roles)
     {
       // Define the claims that will be stored in the JWT token
-      var claims = new[]
+      var claims = new List<Claim>
       {
           new Claim(JwtRegisteredClaimNames.Sub, email),
           new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -28,6 +29,12 @@ namespace KhumaloCraft.Business.Services
           new Claim(ClaimTypes.GivenName, firstName),
           new Claim(ClaimTypes.Surname, lastName)
       };
+
+      // Add each role to the claims
+      foreach (var role in roles)
+      {
+        claims.Add(new Claim(ClaimTypes.Role, role));
+      }
 
       // Get the secret key from appsettings.json
       var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
