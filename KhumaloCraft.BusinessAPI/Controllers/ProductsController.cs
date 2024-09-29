@@ -49,20 +49,16 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         {
             if (patchDoc == null) return BadRequest();
 
-            // Get the product by ID
             var productDTO = await _productService.GetProductById(id);
             if (productDTO == null) return NotFound();
 
-            // Apply the patch
             patchDoc.ApplyTo(productDTO);
 
-            // Validate the patched product explicitly
             if (!TryValidateModel(productDTO))
             {
                 return BadRequest(ModelState);
             }
 
-            // Save the changes
             await _productService.UpdateProduct(productDTO);
 
             return Ok(productDTO);

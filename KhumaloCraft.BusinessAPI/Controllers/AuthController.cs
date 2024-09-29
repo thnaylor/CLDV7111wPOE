@@ -31,19 +31,16 @@ namespace KhumaloCraft.BusinessAPI.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      // Find the user by their email
       var user = await _userManager.FindByEmailAsync(model.Email);
       if (user == null)
         return Unauthorized("Invalid email or password");
 
-      // Check the password
       var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
       if (!result.Succeeded)
         return Unauthorized("Invalid email or password");
 
       var roles = await _userManager.GetRolesAsync(user);
 
-      // Generate the JWT token for the user
       var token = _tokenService.GenerateToken(user.Id, user.Email, user.FirstName, user.LastName, roles);
 
       return Ok(new { Token = token });
@@ -62,7 +59,6 @@ namespace KhumaloCraft.BusinessAPI.Controllers
       if (userExists != null)
         return Conflict("A user with this email already exists");
 
-      // Create a new user
       var user = new User
       {
         UserName = model.Email,
@@ -71,11 +67,10 @@ namespace KhumaloCraft.BusinessAPI.Controllers
         LastName = model.LastName
       };
 
-      // Create the user and hash the password
       var result = await _userManager.CreateAsync(user, model.Password);
       if (!result.Succeeded)
       {
-        return BadRequest(result.Errors); // Return any errors if user creation fails
+        return BadRequest(result.Errors);
       }
 
       var roles = await _userManager.GetRolesAsync(user);

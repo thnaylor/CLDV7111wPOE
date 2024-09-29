@@ -17,13 +17,11 @@ namespace KhumaloCraft.Web.Pages
 
     public string GetCartId()
     {
-      // Use the user's ID as the cartId if authenticated
       if (User.Identity.IsAuthenticated)
       {
         return User.FindFirstValue(ClaimTypes.NameIdentifier);
       }
 
-      // For guest users, use the cartId stored in cookies
       return Request.Cookies["CartId"];
     }
 
@@ -31,10 +29,9 @@ namespace KhumaloCraft.Web.Pages
     {
       string cartId = GetCartId();
 
-      // Make sure the cartId is valid
       if (string.IsNullOrEmpty(cartId))
       {
-        Cart = new CartDTO(); // Initialize an empty cart to avoid null reference
+        Cart = new CartDTO();
         return;
       }
 
@@ -44,7 +41,6 @@ namespace KhumaloCraft.Web.Pages
       {
         var jsonResponse = await response.Content.ReadAsStringAsync();
 
-        // Assign the deserialized cart to the Cart property
         Cart = JsonSerializer.Deserialize<CartDTO>(jsonResponse, new JsonSerializerOptions
         {
           PropertyNameCaseInsensitive = true
@@ -52,7 +48,6 @@ namespace KhumaloCraft.Web.Pages
       }
       else
       {
-        // Initialize an empty cart if the request fails
         Cart = new CartDTO();
       }
     }

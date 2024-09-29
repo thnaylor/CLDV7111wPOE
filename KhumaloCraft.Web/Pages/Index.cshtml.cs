@@ -1,9 +1,6 @@
 using System.Text.Json;
 using KhumaloCraft.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace KhumaloCraft.Pages
 {

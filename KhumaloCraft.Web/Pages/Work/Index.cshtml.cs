@@ -56,33 +56,30 @@ namespace KhumaloCraft.Pages.Work
 
       if (response.IsSuccessStatusCode)
       {
-        return RedirectToPage("/Cart"); // Redirect to Cart page after adding item
+        return RedirectToPage("/Cart");
       }
 
-      return Page(); // Reload current page if adding to cart fails
+      return Page();
     }
 
     public string GetOrCreateCartId()
     {
-      // Use the user's ID as the cartId if authenticated
       if (User.Identity.IsAuthenticated)
       {
         return User.FindFirstValue(ClaimTypes.NameIdentifier);
       }
 
-      // For guest users, use cookie-based cartId
       if (Request.Cookies.ContainsKey("CartId"))
       {
         return Request.Cookies["CartId"];
       }
 
-      // If no cartId exists, generate a new one and store it in cookies
       string cartId = Guid.NewGuid().ToString();
       Response.Cookies.Append("CartId", cartId, new CookieOptions
       {
-        Expires = DateTimeOffset.UtcNow.AddDays(30),  // Expires in 30 days
-        HttpOnly = true,                              // HttpOnly prevents JavaScript access
-        IsEssential = true                            // GDPR compliance
+        Expires = DateTimeOffset.UtcNow.AddDays(30),
+        HttpOnly = true,
+        IsEssential = true
       });
 
       return cartId;
