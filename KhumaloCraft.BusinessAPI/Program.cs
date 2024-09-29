@@ -49,11 +49,15 @@ builder.Services.AddControllers();
 // Register the ProductRepository with its interface
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 // Register the business service
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<CartService>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddHostedService<CartCleanupService>();
 
 var app = builder.Build();
 

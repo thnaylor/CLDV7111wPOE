@@ -10,9 +10,12 @@
       </div>
 
       <div class="order-0 order-lg-3 d-flex gap-2 align-items-center px-2">
-        <button type="button" class="btn btn-link">
-          <i class="bi bi-cart" style="font-size: 2rem; color: white;"></i>
-        </button>
+        <a asp-page="/Cart">
+          <button type="button" class="btn btn-link">
+            <i class="bi bi-cart" style="font-size: 2rem; color: white;"></i>
+          </button>
+        </a>
+
 
         @if (User.Identity.IsAuthenticated)
         {

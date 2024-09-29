@@ -17,6 +17,8 @@ namespace KhumaloCraft.Data.Data
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderItem> OrderItem { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<Cart> Carts { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -57,6 +59,14 @@ namespace KhumaloCraft.Data.Data
         new Product { ProductId = 14, Name = "Fluffy Friend", Description = "Fluffy Friend is a delightful wooden sculpture of a little rabbit, expertly carved from a single piece of soft, white Basswood. The artist’s attention to details brings the adorable rabbit to life, from its twitching whiskers to its cuddly, rounded body.", Price = 1240.00m, ImageSrc = "https://iili.io/diXdWcF.png", CategoryId = 1 },
         new Product { ProductId = 15, Name = "Wise Madala", Description = "Wise Madala is a majestic wooden sculpture of an old owl, carved from a single piece of rich dark wood. The artist's attention to details brings the wise bird to life, from its knowing gaze to its weathered, aged feathers.", Price = 1190.00m, ImageSrc = "https://iili.io/diXdX8g.png", CategoryId = 1 }
       );
+
+      builder.Entity<Cart>()
+        .HasKey(c => c.CartId);
+
+      builder.Entity<Cart>()
+        .HasMany(c => c.Items)
+        .WithOne(ci => ci.Cart)
+        .HasForeignKey(ci => ci.CartId);
     }
   }
 }

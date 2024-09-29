@@ -2,37 +2,43 @@
 @model List<ProductDTO>
 
 <div class="d-flex justify-content-center align-items-center flex-column py-5 my-5 rounded-4 border bg-light">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="d-flex flex-column flex-lg-row justify-content-end gap-2">
-                    <input type="text" class="form-control w-25 d-inline" placeholder="Search">
-                    <select class="form-select w-25 d-inline">
-                        <option selected>Latest</option>
-                        <option value="1">Oldest</option>
-                        <option value="2">Highest price</option>
-                        <option value="3">Lowest price</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="w-100 border-top" style="border-top-color: black; margin: 2.5rem 0;"></div>
-
-            @foreach (var sculpture in Model)
-            {
-                <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
-                    <div class="card border-2 shadow-sm">
-                        <img src="@(sculpture.ImageSrc)" alt="Product - @(sculpture.Name)">
-
-                        <div class="card-body">
-                            <h5 class="card-title">@sculpture.Name</h5>
-                            <p class="card-text text-clamp">@sculpture.Description</p>
-                            <p class="card-text"><strong>Price:</strong> @sculpture.Price.ToString("C", new CultureInfo("en-ZA"))</p>
-                            <button class="btn btn-primary">Add to Card</button>
-                        </div>
-                    </div>
-                </div>
-            }
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex flex-column flex-lg-row justify-content-end gap-2">
+          <input type="text" class="form-control w-25 d-inline" placeholder="Search">
+          <select class="form-select w-25 d-inline">
+            <option selected>Latest</option>
+            <option value="1">Oldest</option>
+            <option value="2">Highest price</option>
+            <option value="3">Lowest price</option>
+          </select>
         </div>
+      </div>
+
+        <div class="w-100 border-top" style="border-top-color: black; margin: 2.5rem 0;"></div>
+
+        @foreach (var sculture in Model)
+        {
+          <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+            <div class="card border-2 shadow-sm">
+              <img src="@(sculture.ImageSrc)" alt="Product - @(sculture.Name)">
+
+              <div class="card-body">
+                <h5 class="card-title">@sculture.Name</h5>
+                <p class="card-text text-clamp">@sculture.Description</p>
+                <p class="card-text"><strong>Price:</strong> @sculture.Price.ToString("C", new CultureInfo("en-ZA"))</p>
+
+                <form method="post" asp-page-handler="AddToCart">
+                  <input type="hidden" name="productId" value="@sculture.ProductId" />
+                  <input type="hidden" name="productName" value="@sculture.Name" />
+                  <input type="hidden" name="price" value="@sculture.Price" />
+                  <button type="submit">Add to Cart</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        }
     </div>
+  </div>
 </div>
