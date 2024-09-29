@@ -3,50 +3,69 @@
 @{
 }
 
-<h2>Edit Product</h2>
+<div class="products">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Edit Product</h2>
+        </div>
 
-<form method="post">
-  <input type="hidden" asp-for="Product.ProductId" />
+        <form method="post" enctype="multipart/form-data" class="p-4 bg-light border rounded-3 shadow-sm">
+          <input type="hidden" asp-for="Product.ProductId" />
 
-  <div class="form-group">
-    <img id="image-preview" src="@Model.Product.ImageSrc" alt="Product Image" style="max-width: 200px; max-height: 200px;" />
+          <!-- Product Image Preview -->
+          <div class="form-group mb-4 text-center">
+            <img id="image-preview" src="@Model.Product.ImageSrc" class="img-fluid mb-3" style="max-width: 200px;" alt="Product Image" />
+          </div>
+
+          <!-- Product Name -->
+          <div class="form-group mb-4">
+            <label asp-for="Product.Name" class="form-label fw-semibold">Product Name</label>
+            <input asp-for="Product.Name" class="form-control border-0 border-bottom" placeholder="Edit product name" />
+            <span asp-validation-for="Product.Name" class="text-danger small"></span>
+          </div>
+
+          <!-- Product Price -->
+          <div class="form-group mb-4">
+            <label asp-for="Product.Price" class="form-label fw-semibold">Product Price</label>
+            <input asp-for="Product.Price" class="form-control border-0 border-bottom" placeholder="Edit product price" />
+            <span asp-validation-for="Product.Price" class="text-danger small"></span>
+          </div>
+
+          <!-- Product Description -->
+          <div class="form-group mb-4">
+            <label asp-for="Product.Description" class="form-label fw-semibold">Product Description</label>
+            <textarea asp-for="Product.Description" class="form-control border-0 border-bottom" placeholder="Edit product description"></textarea>
+            <span asp-validation-for="Product.Description" class="text-danger small"></span>
+          </div>
+
+          <!-- Product Image Upload -->
+          <div class="form-group mb-4">
+            <label asp-for="Product.ImageSrc" class="form-label fw-semibold">Update Product Image</label>
+            <input asp-for="Product.ImageSrc" type="text" class="form-control" />
+            <span asp-validation-for="Product.ImageSrc" class="text-danger small"></span>
+          </div>
+
+          <!-- Product Category -->
+          <div class="form-group mb-4">
+            <label asp-for="Product.CategoryId" class="form-label fw-semibold">Category</label>
+            <select asp-for="Product.CategoryId" class="form-control border-0 border-bottom" asp-items="@(new SelectList(Model.Categories, "CategoryId", "CategoryName"))">
+              <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="Product.CategoryId" class="text-danger small"></span>
+          </div>
+
+          <!-- Form Buttons -->
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-dark px-4 py-2">Save</button>
+            <a asp-page="/Admin/Products/Index" class="btn btn-outline-secondary px-4 py-2">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label asp-for="Product.Name"></label>
-    <input asp-for="Product.Name" class="form-control" />
-    <span asp-validation-for="Product.Name" class="text-danger"></span>
-  </div>
-
-  <div class="form-group">
-    <label asp-for="Product.Price"></label>
-    <input asp-for="Product.Price" class="form-control" />
-    <span asp-validation-for="Product.Price" class="text-danger"></span>
-  </div>
-
-  <div class="form-group">
-    <label asp-for="Product.Description"></label>
-    <textarea asp-for="Product.Description" class="form-control"></textarea>
-    <span asp-validation-for="Product.Description" class="text-danger"></span>
-  </div>
-
-  <div class="form-group">
-    <label asp-for="Product.ImageSrc"></label>
-    <input asp-for="Product.ImageSrc" class="form-control" oninput="updateImagePreview()" />
-    <span asp-validation-for="Product.ImageSrc" class="text-danger"></span>
-  </div>
-
-  <div class="form-group">
-    <label asp-for="Product.CategoryId">Category</label>
-    <select asp-for="Product.CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories, "CategoryId", "CategoryName"))">
-      <option value="">-- Select Category --</option>
-    </select>
-    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Save</button>
-  <a asp-page="/Admin/Products/Index" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
 
 <script>
   function updateImagePreview() {

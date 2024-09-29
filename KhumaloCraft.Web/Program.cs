@@ -1,4 +1,5 @@
 using System.Text;
+using KhumaloCraft.Web.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -8,53 +9,55 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // Add HttpClient for API calls
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<JwtAuthorizationHandler>();
 builder.Services.AddHttpClient("BusinessAPI", client =>
 {
   client.BaseAddress = new Uri("http://localhost:5068/");  // Replace with the actual URL of your API
-});
+}).AddHttpMessageHandler<JwtAuthorizationHandler>();
 
 // Configure JWT Bearer authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+  .AddJwtBearer(options =>
+  {
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-      options.TokenValidationParameters = new TokenValidationParameters
-      {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-      };
+      ValidateIssuer = true,
+      ValidateAudience = true,
+      ValidateLifetime = true,
+      ValidateIssuerSigningKey = true,
+      ValidIssuer = builder.Configuration["Jwt:Issuer"],
+      ValidAudience = builder.Configuration["Jwt:Audience"],
+      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
 
-      // Read the JWT from the cookies
-      options.Events = new JwtBearerEvents
+    // Read the JWT from the cookies
+    options.Events = new JwtBearerEvents
+    {
+      OnMessageReceived = context =>
       {
-        OnMessageReceived = context =>
+        var token = context.Request.Cookies["AuthToken"];
+        if (!string.IsNullOrEmpty(token))
         {
-          var token = context.Request.Cookies["AuthToken"];
-          if (!string.IsNullOrEmpty(token))
-          {
-            context.Token = token;
-          }
-          return Task.CompletedTask;
-        },
-        OnChallenge = context =>
-        {
-          if (!context.HttpContext.User.Identity.IsAuthenticated)
-          {
-            context.Response.Redirect("/Auth/Login");
-          }
-          return Task.CompletedTask;
-        },
-        OnForbidden = context =>
-        {
-          context.Response.Redirect("/Auth/AccessDenied");
-          return Task.CompletedTask;
+          context.Token = token;
         }
-      };
-    });
+        return Task.CompletedTask;
+      },
+      OnChallenge = context =>
+      {
+        if (!context.HttpContext.User.Identity.IsAuthenticated)
+        {
+          context.Response.Redirect("/Auth/Login");
+        }
+        return Task.CompletedTask;
+      },
+      OnForbidden = context =>
+      {
+        context.Response.Redirect("/Auth/AccessDenied");
+        return Task.CompletedTask;
+      }
+    };
+  });
 
 // Authorization policy
 builder.Services.AddAuthorization(options =>

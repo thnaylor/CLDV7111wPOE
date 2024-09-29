@@ -17,7 +17,7 @@ namespace KhumaloCraft.BusinessAPI.Controllers
     }
 
     [HttpGet]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetAllCategories()
     {
       var categories = await _categoryService.GetAllCategories();
@@ -25,14 +25,13 @@ namespace KhumaloCraft.BusinessAPI.Controllers
     }
 
     [HttpGet("{id}")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetCategoryById(int id)
     {
       var category = await _categoryService.GetCategoryById(id);
       if (category == null) return NotFound();
       return Ok(category);
     }
-
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
@@ -41,7 +40,6 @@ namespace KhumaloCraft.BusinessAPI.Controllers
       await _categoryService.AddCategory(categoryDTO);
       return Ok("Category added successfully");
     }
-
 
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]

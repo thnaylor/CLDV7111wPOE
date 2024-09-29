@@ -5,11 +5,11 @@ namespace KhumaloCraft.Web.Pages.Admin.Categories
 {
     public class DeleteModel : PageModel
     {
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public DeleteModel(HttpClient httpClient)
+        public DeleteModel(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
         }
 
         [BindProperty]
@@ -23,7 +23,8 @@ namespace KhumaloCraft.Web.Pages.Admin.Categories
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var response = await _httpClient.DeleteAsync($"http://localhost:5068/api/categories/{Id}");
+            var client = _httpClientFactory.CreateClient("BusinessAPI");
+            var response = await client.DeleteAsync($"/api/categories/{Id}");
 
             if (response.IsSuccessStatusCode)
             {

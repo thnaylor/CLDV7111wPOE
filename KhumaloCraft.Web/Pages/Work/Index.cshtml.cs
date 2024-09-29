@@ -56,7 +56,7 @@ namespace KhumaloCraft.Pages.Work
 
       if (response.IsSuccessStatusCode)
       {
-        return RedirectToPage("/Cart");
+        return RedirectToPage("/Work/Index");
       }
 
       return Page();

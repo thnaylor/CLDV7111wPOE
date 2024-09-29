@@ -1,19 +1,20 @@
-using System.Text;
-using System.Text.Json;
 using KhumaloCraft.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text;
+using System.Text.Json;
+
 
 namespace KhumaloCraft.Web.Pages.Admin.Products
 {
   public class EditModel : PageModel
   {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<EditModel> _logger;
 
-    public EditModel(HttpClient httpClient, ILogger<EditModel> logger)
+    public EditModel(IHttpClientFactory httpClientFactory, ILogger<EditModel> logger)
     {
-      _httpClient = httpClient;
+      _httpClientFactory = httpClientFactory;
       _logger = logger;
     }
 
@@ -23,7 +24,9 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
 
     public async Task<IActionResult> OnGetAsync(int id)
     {
-      var response = await _httpClient.GetAsync($"http://localhost:5068/api/products/{id}");
+      var client = _httpClientFactory.CreateClient("BusinessAPI");
+      var response = await client.GetAsync($"/api/products/{id}");
+
       if (response.IsSuccessStatusCode)
       {
         var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -61,7 +64,8 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
       _logger.LogInformation($"Sending JSON to API: {jsonProduct}");
       var content = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
 
-      var response = await _httpClient.PutAsync($"http://localhost:5068/api/products/{Product.ProductId}", content);
+      var client = _httpClientFactory.CreateClient("BusinessAPI");
+      var response = await client.PutAsync($"/api/products/{Product.ProductId}", content);
 
       if (response.IsSuccessStatusCode)
       {
@@ -75,7 +79,8 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
 
     private async Task LoadCategoriesAsync()
     {
-      var response = await _httpClient.GetAsync("http://localhost:5068/api/categories");
+      var client = _httpClientFactory.CreateClient("BusinessAPI");
+      var response = await client.GetAsync("/api/categories");
       if (response.IsSuccessStatusCode)
       {
         var jsonResponse = await response.Content.ReadAsStringAsync();

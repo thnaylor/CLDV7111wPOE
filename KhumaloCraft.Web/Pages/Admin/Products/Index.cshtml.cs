@@ -6,18 +6,19 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
 {
   public class IndexModel : PageModel
   {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public IndexModel(HttpClient httpClient)
+    public IndexModel(IHttpClientFactory httpClientFactory)
     {
-      _httpClient = httpClient;
+      _httpClientFactory = httpClientFactory;
     }
 
     public List<ProductDTO> Products { get; set; } = new List<ProductDTO>();
 
     public async Task OnGetAsync()
     {
-      var response = await _httpClient.GetAsync("http://localhost:5068/api/products");
+      var client = _httpClientFactory.CreateClient("BusinessAPI");
+      var response = await client.GetAsync("/api/products");
       if (response.IsSuccessStatusCode)
       {
         var jsonResponse = await response.Content.ReadAsStringAsync();

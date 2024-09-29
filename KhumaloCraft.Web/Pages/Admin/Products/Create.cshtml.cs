@@ -8,11 +8,11 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
 {
 	public class CreateModel : PageModel
 	{
-		private readonly HttpClient _httpClient;
+		private readonly IHttpClientFactory _httpClientFactory;
 
-		public CreateModel(HttpClient httpClient)
+		public CreateModel(IHttpClientFactory httpClientFactory)
 		{
-			_httpClient = httpClient;
+			_httpClientFactory = httpClientFactory;
 		}
 
 		[BindProperty]
@@ -35,8 +35,8 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
 
 			var jsonProduct = JsonSerializer.Serialize(Product);
 			var content = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-
-			var response = await _httpClient.PostAsync("http://localhost:5068/api/products", content);
+			var client = _httpClientFactory.CreateClient("BusinessAPI");
+			var response = await client.PostAsync("/api/products", content);
 
 			if (response.IsSuccessStatusCode)
 			{
@@ -49,7 +49,8 @@ namespace KhumaloCraft.Web.Pages.Admin.Products
 
 		private async Task LoadCategoriesAsync()
 		{
-			var response = await _httpClient.GetAsync("http://localhost:5068/api/categories");
+			var client = _httpClientFactory.CreateClient("BusinessAPI");
+			var response = await client.GetAsync("/api/categories");
 			if (response.IsSuccessStatusCode)
 			{
 				var jsonResponse = await response.Content.ReadAsStringAsync();

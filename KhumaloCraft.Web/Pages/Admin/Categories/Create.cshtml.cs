@@ -8,11 +8,11 @@ namespace KhumaloCraft.Web.Pages.Admin.Categories
 {
   public class CreateModel : PageModel
   {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public CreateModel(HttpClient httpClient)
+    public CreateModel(IHttpClientFactory httpClientFactory)
     {
-      _httpClient = httpClient;
+      _httpClientFactory = httpClientFactory;
     }
 
     [BindProperty]
@@ -28,7 +28,8 @@ namespace KhumaloCraft.Web.Pages.Admin.Categories
       var jsonCategory = JsonSerializer.Serialize(Category);
       var content = new StringContent(jsonCategory, Encoding.UTF8, "application/json");
 
-      var response = await _httpClient.PostAsync("http://localhost:5068/api/categories", content);
+      var client = _httpClientFactory.CreateClient("BusinessAPI");
+      var response = await client.PostAsync("/api/categories", content);
 
       if (response.IsSuccessStatusCode)
       {
