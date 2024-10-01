@@ -16,29 +16,29 @@
         </div>
       </div>
 
-        <div class="w-100 border-top" style="border-top-color: black; margin: 2.5rem 0;"></div>
+      <div class="w-100 border-top" style="border-top-color: black; margin: 2.5rem 0;"></div>
 
-        @foreach (var sculture in Model)
-        {
-          <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
-            <div class="card border-2 shadow-sm">
-              <img src="@(sculture.ImageSrc)" alt="Product - @(sculture.Name)">
+      @foreach (var sculture in Model)
+      {
+        <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+          <div class="card border-2 shadow-sm">
+            <img src="@(sculture.ImageSrc)" alt="Product - @(sculture.Name)">
 
-              <div class="card-body">
-                <h5 class="card-title">@sculture.Name</h5>
-                <p class="card-text text-clamp">@sculture.Description</p>
-                <p class="card-text"><strong>Price:</strong> @sculture.Price.ToString("C", new CultureInfo("en-ZA"))</p>
+            <div class="card-body">
+              <h5 class="card-title">@sculture.Name</h5>
+              <p class="card-text text-clamp">@sculture.Description</p>
+              <p class="card-text"><strong>Price:</strong> @sculture.Price.ToString("C", new CultureInfo("en-ZA"))</p>
 
-                <form method="post" asp-page-handler="AddToCart">
-                  <input type="hidden" name="productId" value="@sculture.ProductId" />
-                  <input type="hidden" name="productName" value="@sculture.Name" />
-                  <input type="hidden" name="price" value="@sculture.Price" />
-                  <button type="submit">Add to Cart</button>
-                </form>
-              </div>
+              <form method="post" asp-page-handler="AddToCart">
+                <input type="hidden" name="productId" value="@sculture.ProductId" />
+                <input type="hidden" name="productName" value="@sculture.Name" />
+                <input type="hidden" name="price" value="@sculture.Price" />
+                <button class="btn btn-secondary" type="submit">Add to Cart</button>
+              </form>
             </div>
           </div>
-        }
+        </div>
+      }
     </div>
   </div>
 </div>

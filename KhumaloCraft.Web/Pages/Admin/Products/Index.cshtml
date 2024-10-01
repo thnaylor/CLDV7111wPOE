@@ -1,6 +1,8 @@
 ﻿@page
+@using System.Globalization
 @model KhumaloCraft.Web.Pages.Admin.Products.IndexModel
 @{
+  var cultureInfo = new CultureInfo("en-ZA");
 }
 
 <div class="products">
@@ -29,7 +31,7 @@
                 <tr class="align-middle">
                   <td><img class="img-fluid" width="300" src="@product.ImageSrc" alt="@product.Name"></td>
                   <td>@product.Name</td>
-                  <td>@product.Price</td>
+                  <td>@product.Price.ToString("C", cultureInfo)</td>
                   <td>@product.Description</td>
                   <td class="text-center">
                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
