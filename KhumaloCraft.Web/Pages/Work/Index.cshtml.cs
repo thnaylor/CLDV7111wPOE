@@ -64,11 +64,6 @@ namespace KhumaloCraft.Pages.Work
 
     public string GetOrCreateCartId()
     {
-      if (User.Identity.IsAuthenticated)
-      {
-        return User.FindFirstValue(ClaimTypes.NameIdentifier);
-      }
-
       if (Request.Cookies.ContainsKey("CartId"))
       {
         return Request.Cookies["CartId"];

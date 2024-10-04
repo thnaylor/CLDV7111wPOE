@@ -17,11 +17,6 @@ namespace KhumaloCraft.Web.Pages
 
     public string GetCartId()
     {
-      if (User.Identity.IsAuthenticated)
-      {
-        return User.FindFirstValue(ClaimTypes.NameIdentifier);
-      }
-
       return Request.Cookies["CartId"];
     }
 

@@ -8,7 +8,7 @@
   <div class="container mt-5">
     <h2>Your Cart</h2>
 
-    @if (Model.Cart.Items.Count == 0)
+    @if (Model.Cart?.Items == null || Model.Cart.Items.Count == 0)
     {
       <div class="alert alert-info mt-3">Your cart is empty.</div>
     }
