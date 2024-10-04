@@ -1,13 +1,19 @@
+using KhumaloCraft.Data.Data;
 using KhumaloCraft.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class SeedData
 {
   public static async Task Initialize(IServiceProvider serviceProvider)
   {
+    var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+
+    // Apply migrations
+    await context.Database.MigrateAsync();
 
     // Seed Roles
     string[] roleNames = { "Admin", "User", "Manager" };
