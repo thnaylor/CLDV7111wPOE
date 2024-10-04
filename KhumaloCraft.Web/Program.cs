@@ -11,9 +11,12 @@ builder.Services.AddRazorPages();
 // Add HttpClient for API calls
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<JwtAuthorizationHandler>();
+
+var apiHost = Environment.GetEnvironmentVariable("API_CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("ApiHost");
+
 builder.Services.AddHttpClient("BusinessAPI", client =>
 {
-  client.BaseAddress = new Uri("http://localhost:5068/");  // Replace with the actual URL of your API
+  client.BaseAddress = new Uri(apiHost);
 }).AddHttpMessageHandler<JwtAuthorizationHandler>();
 
 // Configure JWT Bearer authentication

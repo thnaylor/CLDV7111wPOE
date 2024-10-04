@@ -67,6 +67,10 @@ namespace KhumaloCraft.Data.Data
         .HasMany(c => c.Items)
         .WithOne(ci => ci.Cart)
         .HasForeignKey(ci => ci.CartId);
+
+      builder.Entity<CartItem>()
+        .Property(c => c.Price)
+        .HasColumnType("decimal(18,4)");
     }
   }
 }

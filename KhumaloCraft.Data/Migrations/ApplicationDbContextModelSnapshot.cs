@@ -48,7 +48,7 @@ namespace KhumaloCraft.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

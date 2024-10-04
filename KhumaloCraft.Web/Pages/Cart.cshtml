@@ -41,7 +41,7 @@
       <div class="d-flex justify-content-between align-items-center mt-4">
           <h4>Total: @(Model.Cart.Items.Sum(i => i.Price * i.Quantity).ToString("C", cultureInfo))</h4>
           <form method="post" action="/Checkout">
-              <button type="submit" class="btn btn-success px-4 py-2">Proceed to Checkout</button>
+              <button type="submit" class="btn btn-success px-4 py-2">Place order</button>
           </form>
       </div>
     }

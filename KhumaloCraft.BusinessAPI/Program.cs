@@ -10,11 +10,13 @@ using KhumaloCraft.Data.Entities;
 using KhumaloCraft.Data.Repositories.Implementations;
 using KhumaloCraft.Data.Repositories.Interfaces;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
+var dbConnection = Environment.GetEnvironmentVariable("AZURE_CONNECTION_STRING") ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
 // Add services to the container.
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(dbConnection));
 
 // Register the identity service
 builder.Services.AddIdentity<User, IdentityRole>()
@@ -41,21 +43,23 @@ builder.Services.AddAuthentication(options =>
   };
 });
 
+// Add Authorization services
+builder.Services.AddAuthorization();
+
+// Register Controller services
+builder.Services.AddControllers();  // <--- Add this line
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
 
-// Register the ProductRepository with its interface
+// Register other services
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
-
-// Register the business service
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<CartService>();
-builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddHostedService<CartCleanupService>();
 
@@ -75,8 +79,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();
