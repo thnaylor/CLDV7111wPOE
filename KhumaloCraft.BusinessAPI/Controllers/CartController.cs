@@ -34,6 +34,13 @@ namespace KhumaloCraft.BusinessAPI.Controllers
       return Ok();
     }
 
+    [HttpPost("link")]
+    public IActionResult LinkCartToUser([FromBody] CartLinkDTO linkData)
+    {
+      _cartService.LinkCartToUser(linkData.cartId, linkData.userId);
+      return Ok();
+    }
+
     [HttpPost("clear")]
     public IActionResult ClearCart(string cartId)
     {
