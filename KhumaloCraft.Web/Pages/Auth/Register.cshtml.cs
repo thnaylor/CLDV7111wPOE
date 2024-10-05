@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text;
 using System.Text.Json;
 using KhumaloCraft.Shared.DTOs;
+using System.Security.Claims;
 
 namespace KhumaloCraft.Pages.Auth
 {
@@ -39,21 +40,22 @@ namespace KhumaloCraft.Pages.Auth
       if (RegisterDTO.Password != RegisterDTO.ConfirmPassword)
       {
         ModelState.AddModelError("RegisterDTO.ConfirmPassword", "The password and confirmation password do not match.");
-        return Page();
+        return Page(); // Return if the passwords do not match
       }
 
       if (!ModelState.IsValid)
       {
-        return Page();
+        return Page(); // Return if the model state is not valid
       }
 
-      // Prepare registration data
+      // Prepare registration data (include ConfirmPassword)
       var registerData = new
       {
         FirstName = RegisterDTO.FirstName,
         LastName = RegisterDTO.LastName,
         Email = RegisterDTO.Email,
-        Password = RegisterDTO.Password
+        Password = RegisterDTO.Password,
+        ConfirmPassword = RegisterDTO.ConfirmPassword // Add ConfirmPassword field
       };
 
       // Send registration request to the API
@@ -83,8 +85,13 @@ namespace KhumaloCraft.Pages.Auth
       {
         // Log the error and display a message to the user
         ErrorMessage = "Registration failed. Please try again.";
+
+        // Log the detailed response content for debugging
+        var errorContent = await response.Content.ReadAsStringAsync();
+        _logger.LogError("Registration failed with response: {ErrorContent}", errorContent);
+
         _logger.LogWarning("Failed registration attempt for user: {Email}", RegisterDTO.Email);
-        return Page();
+        return Page(); // Return the page on failure
       }
     }
   }

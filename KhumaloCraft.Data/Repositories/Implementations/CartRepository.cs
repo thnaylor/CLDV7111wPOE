@@ -16,7 +16,7 @@ public class CartRepository : ICartRepository
 
   public Cart GetCartById(string cartId)
   {
-    return _dbContext.Carts.Include(c => c.Items).FirstOrDefault(c => c.CartId == cartId);
+    return _dbContext.Carts.Include(c => c.Items).FirstOrDefault(c => c.CartId == cartId || c.UserId == cartId);
   }
 
   public void SaveCart(Cart cart)
@@ -31,6 +31,17 @@ public class CartRepository : ICartRepository
       _dbContext.Entry(existingCart).CurrentValues.SetValues(cart);
     }
     _dbContext.SaveChanges();
+  }
+
+  public void UpdateCartUserId(string cartId, string userId)
+  {
+    var cart = _dbContext.Carts.FirstOrDefault(c => c.CartId == cartId);
+
+    if (cart != null)
+    {
+      cart.UserId = userId;
+      _dbContext.SaveChanges();
+    }
   }
 
   public void DeleteCart(string cartId)

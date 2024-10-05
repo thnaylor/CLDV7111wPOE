@@ -8,6 +8,7 @@ namespace KhumaloCraft.Pages.Auth
     public async Task<IActionResult> OnPostAsync()
     {
       Response.Cookies.Delete("AuthToken");
+      Response.Cookies.Delete("CartId");
 
       return RedirectToPage("/Index");
     }

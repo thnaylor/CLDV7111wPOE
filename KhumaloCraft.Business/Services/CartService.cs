@@ -62,6 +62,11 @@ public class CartService
     _cartRepository.SaveCart(cart);
   }
 
+  public void LinkCartToUser(string cartId, string userId)
+  {
+    _cartRepository.UpdateCartUserId(cartId, userId);
+  }
+
   public void ClearCart(string cartId)
   {
     _cartRepository.DeleteCart(cartId);

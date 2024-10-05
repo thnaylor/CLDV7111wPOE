@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text;
 using System.Text.Json;
 using KhumaloCraft.Shared.DTOs;
+using System.Security.Claims;
 
 namespace KhumaloCraft.Pages.Auth
 {
@@ -67,6 +68,31 @@ namespace KhumaloCraft.Pages.Auth
           Expires = DateTimeOffset.UtcNow.AddHours(1) // Token expires in 1 hour
         });
 
+        var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+        var jwtToken = tokenHandler.ReadJwtToken(tokenResponse.Token);
+        var userId = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        if (Request.Cookies.ContainsKey("CartId") || string.IsNullOrEmpty(userId))
+        {
+          var cartId = Request.Cookies["CartId"];
+
+          Response.Cookies.Append("CartId", userId, new CookieOptions
+          {
+            Expires = DateTimeOffset.UtcNow.AddDays(30),
+            HttpOnly = true,
+            IsEssential = true
+          });
+
+          var linkCartData = new CartLinkDTO
+          {
+            cartId = cartId,
+            userId = userId
+          };
+
+          var cartLinkData = new StringContent(JsonSerializer.Serialize(linkCartData), Encoding.UTF8, "application/json");
+
+          await _httpClient.PostAsync("api/cart/link", cartLinkData);
+        }
         // Redirect to a protected page or homepage after login
         return RedirectToPage("/Index");
       }

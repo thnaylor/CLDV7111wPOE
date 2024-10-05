@@ -8,7 +8,7 @@ namespace KhumaloCraft.Web.Pages
   public class CartModel : PageModel
   {
     private readonly HttpClient _httpClient;
-    public CartDTO Cart { get; set; } = new CartDTO(); // Initialize CartDTO
+    public CartDTO Cart { get; set; } = new CartDTO();
 
     public CartModel(IHttpClientFactory httpClientFactory)
     {
