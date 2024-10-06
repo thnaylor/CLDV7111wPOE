@@ -6,6 +6,8 @@ namespace KhumaloCraft.Data.Entities
 
     public DateTime OrderDate { get; set; } = DateTime.Now;
 
+    public IList<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
     public string UserId { get; set; }
 
     public User User { get; set; }

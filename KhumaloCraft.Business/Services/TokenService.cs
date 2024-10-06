@@ -22,7 +22,7 @@ namespace KhumaloCraft.Business.Services
       // Define the claims that will be stored in the JWT token
       var claims = new List<Claim>
       {
-          new Claim(JwtRegisteredClaimNames.Sub, email),
+          new Claim(JwtRegisteredClaimNames.Sub, userId),
           new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
           new Claim(ClaimTypes.NameIdentifier, userId),
           new Claim(ClaimTypes.Name, email),

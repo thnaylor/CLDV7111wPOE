@@ -57,6 +57,15 @@
         </ul>
 
         <div class="d-none d-lg-flex flex-stretch-1 justify-content-lg-end bg-dark">
+          @if (User.Identity.IsAuthenticated)
+          {
+            <a asp-page="/Orders">
+              <button class="btn btn-success fs-6 fw-bold me-2" type="button">
+                Orders
+              </button>
+            </a>
+          }
+
           @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
           {
             <div class="dropdown">
@@ -75,7 +84,7 @@
               </ul>
             </div>
           }
-          
+
           @if (!User.Identity.IsAuthenticated)
           {
             <div class="d-grid d-lg-flex gap-2 align-items-center me-lg-2 p-2">

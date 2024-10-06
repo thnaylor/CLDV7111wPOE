@@ -25,6 +25,7 @@ public class ProductService : IProductService
       Price = p.Price,
       Description = p.Description,
       ImageSrc = p.ImageSrc,
+      Quantity = p.Quantity,
       CategoryId = p.CategoryId,
       CategoryName = p.Category?.CategoryName
     }).ToList();
@@ -44,6 +45,7 @@ public class ProductService : IProductService
       Price = product.Price,
       Description = product.Description,
       ImageSrc = product.ImageSrc,
+      Quantity = product.Quantity,
       CategoryId = product.CategoryId,
       CategoryName = product.Category?.CategoryName
     };

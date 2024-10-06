@@ -131,7 +131,7 @@ namespace KhumaloCraft.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("KhumaloCraft.Data.Entities.OrderItem", b =>
@@ -157,7 +157,7 @@ namespace KhumaloCraft.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("KhumaloCraft.Data.Entities.Product", b =>
@@ -189,6 +189,9 @@ namespace KhumaloCraft.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
@@ -203,7 +206,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Naledi Gaze is a stunning wooden sculpture of an owl, expertly carved from a single piece of a rich, dark wood Ebony. The artist’s attention to details brings the bird to life, from the delicate feathers to the piercings eyes.",
                             ImageSrc = "https://iili.io/diXdT67.png",
                             Name = "Naledi Gaze",
-                            Price = 1200.00m
+                            Price = 1200.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -212,7 +216,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Whispering wings is a charming wooden sculpture of western screech-Owl, expertly carved from a single piece of soft, gray wood. The artist’s attention to details brings the small owl to life, as it perches quietly, its wings folded, exuding a sense of gentle wisdom.",
                             ImageSrc = "https://iili.io/diXdAF9.png",
                             Name = "Whispering Wings",
-                            Price = 1500.00m
+                            Price = 1500.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -221,7 +226,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "A cozy, Catnap is a captivating wooden sculpture of a cat gazing, expertly carved from a single piece of warm, golden wood. The artist’s attention to details brings the cat to life, from the delicate whiskers to the relaxed contented expression.",
                             ImageSrc = "https://iili.io/diXdzn2.png",
                             Name = "Catnap",
-                            Price = 1000.00m
+                            Price = 1000.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -230,7 +236,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Hoppy Sindile is a delightful wooden sculpture of a kangaroo in mid-hop, expertly carved from a single piece of rich, Walnut wood. The artist’s attention to details brings the marsupial to life, from the powerful hind legs to the joyful, carefree expression.",
                             ImageSrc = "https://iili.io/diXdIGS.png",
                             Name = "Hoppy Sindile",
-                            Price = 1750.00m
+                            Price = 1750.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -239,7 +246,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "This handcrafted wooden art piece, 'Uhlanga Lwenyoni,' showcases a captivating fusion of traditional African artistry and natural elegance. Skillfully carved from rich, durable wood, it features intricate tribal patterns and vibrant hand-painted accents.",
                             ImageSrc = "https://iili.io/diXd58u.png",
                             Name = "Uhlanga Lwenyoni",
-                            Price = 1400.00m
+                            Price = 1400.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -248,7 +256,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Azure Blue Jay Songster is a vibrant wooden sculpture of a blue jay in mid-song, expertly carved from a single piece of rich, blue-stained wood. The artist’s attention to detail brings the bird to life from the intricate feathers to the joyful, open beak.",
                             ImageSrc = "https://iili.io/diXdRae.png",
                             Name = "Azure Blue Jay Songster",
-                            Price = 1500.00m
+                            Price = 1500.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -257,7 +266,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Nightshade is a stunning wooden sculpture on an Owl grasping a branch, highlighting the bird's fierce strength and precision. The artist’s attention to detail brings the scene to life, from the owl’s wise eyes to the intricate texture of the branch.",
                             ImageSrc = "https://iili.io/diXdauj.png",
                             Name = "Nightshade",
-                            Price = 1800.00m
+                            Price = 1800.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -266,7 +276,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Playful Kid is a charming wooden sculpture of a little goat, expertly carved from a single piece of warm, golden wood. The artist’s attention to details brings the playful goat to life, from its curious expression to its agile legs.",
                             ImageSrc = "https://iili.io/diXd7yb.png",
                             Name = "Playful Kid",
-                            Price = 1300.00m
+                            Price = 1300.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -275,7 +286,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Dekeledi is a playful wooden sculpture of a little rabbit, expertly carved from a single piece of soft, white pine wood. The artist's attention to details brings the humorous scene to life, as the rabbit appears stuck, its little legs stuck and eyes glazing.",
                             ImageSrc = "https://iili.io/diXdcwx.png",
                             Name = "Dekeledi",
-                            Price = 1900.00m
+                            Price = 1900.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -284,7 +296,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Curios Curlew is a delightful wooden sculpture of a bird with its long nose, expertly carved from a single piece of warm, golden wood. The artist's attention to details brings life to the bird, as it sniffs and explores its surroundings with its uniquely shaped beak.",
                             ImageSrc = "https://iili.io/diXdlZQ.png",
                             Name = "Curios Curlew",
-                            Price = 1200.00m
+                            Price = 1200.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -293,7 +306,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Bombastic Glance is a captivating wooden sculpture of a partridge bird, expertly carved from a single piece of warm, golden wood. The artist's attention to details brings the bird to life, as it turns its head away, lost in thought.",
                             ImageSrc = "https://iili.io/diXd1nV.png",
                             Name = "Bombastic Glance",
-                            Price = 1600.00m
+                            Price = 1600.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -302,7 +316,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Moonlight Guardian is a majestic wooden sculpture of the Great Horned Owl, expertly carved from a single piece of rich, white wood. The artist’s attention to detail brings the powerful bird to life, as it stands watchful and wise, bathed in the soft glow of the moon.",
                             ImageSrc = "https://iili.io/diXdEMB.png",
                             Name = "Moonlight Guardian",
-                            Price = 1600.00m
+                            Price = 1600.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -311,7 +326,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Sightless Peace is a thought-provoking wooden sculpture of a doll with no eyes. Carved from a single piece of smooth, pale wood. The artist’s attention to details brings the doll to life, despite its lack of eyes, conveying a sense of peacefulness and inner sight.",
                             ImageSrc = "https://iili.io/diXdVF1.png",
                             Name = "Sightless Peace",
-                            Price = 1150.00m
+                            Price = 1150.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -320,7 +336,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Fluffy Friend is a delightful wooden sculpture of a little rabbit, expertly carved from a single piece of soft, white Basswood. The artist’s attention to details brings the adorable rabbit to life, from its twitching whiskers to its cuddly, rounded body.",
                             ImageSrc = "https://iili.io/diXdWcF.png",
                             Name = "Fluffy Friend",
-                            Price = 1240.00m
+                            Price = 1240.00m,
+                            Quantity = 0
                         },
                         new
                         {
@@ -329,7 +346,8 @@ namespace KhumaloCraft.Data.Migrations
                             Description = "Wise Madala is a majestic wooden sculpture of an old owl, carved from a single piece of rich dark wood. The artist's attention to details brings the wise bird to life, from its knowing gaze to its weathered, aged feathers.",
                             ImageSrc = "https://iili.io/diXdX8g.png",
                             Name = "Wise Madala",
-                            Price = 1190.00m
+                            Price = 1190.00m,
+                            Quantity = 0
                         });
                 });
 
@@ -579,7 +597,7 @@ namespace KhumaloCraft.Data.Migrations
             modelBuilder.Entity("KhumaloCraft.Data.Entities.OrderItem", b =>
                 {
                     b.HasOne("KhumaloCraft.Data.Entities.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -660,6 +678,11 @@ namespace KhumaloCraft.Data.Migrations
             modelBuilder.Entity("KhumaloCraft.Data.Entities.Cart", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("KhumaloCraft.Data.Entities.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

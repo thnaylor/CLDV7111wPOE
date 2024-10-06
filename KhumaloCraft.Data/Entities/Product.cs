@@ -21,6 +21,9 @@ namespace KhumaloCraft.Data.Entities
     [MaxLength(255)]
     public string ImageSrc { get; set; }
 
+    [Required]
+    public int Quantity { get; set; }
+
     public int CategoryId { get; set; }
 
     public Category Category { get; set; }
