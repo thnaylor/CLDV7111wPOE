@@ -1,8 +1,6 @@
 using KhumaloCraft.Business.Interfaces;
-using KhumaloCraft.Business.Services;
 using KhumaloCraft.Shared.DTOs;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KhumaloCraft.BusinessAPI.Controllers
@@ -44,6 +42,14 @@ namespace KhumaloCraft.BusinessAPI.Controllers
     {
       await _orderService.AddOrder(orderDTO);
       return Ok("Order added successfully");
+    }
+
+    [HttpPut("{orderId}/status")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdateStatus(int orderId, int statusId)
+    {
+      await _orderService.UpdateOrderStatusAsync(orderId, statusId);
+      return Ok("Order status updated successfully");
     }
   }
 }

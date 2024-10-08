@@ -47,6 +47,27 @@ public class OrderRepository : IOrderRepository
     _dbContext.Orders.Remove(order);
   }
 
+  public async Task UpdateOrderStatusAsync(int orderId, int statusId)
+  {
+    var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.OrderId == orderId);
+
+    if (order == null)
+    {
+      throw new KeyNotFoundException($"Order with ID {orderId} not found.");
+    }
+
+    var statusExists = await _dbContext.Status.AnyAsync(s => s.StatusId == statusId);
+
+    if (!statusExists)
+    {
+      throw new InvalidOperationException($"Invalid StatusId {statusId}. No matching status found.");
+    }
+
+    order.StatusId = statusId;
+
+    await SaveChangesAsync();
+  }
+
   public async Task SaveChangesAsync()
   {
     await _dbContext.SaveChangesAsync();
