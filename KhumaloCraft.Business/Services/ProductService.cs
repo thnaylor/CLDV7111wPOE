@@ -59,6 +59,7 @@ public class ProductService : IProductService
       Price = productDTO.Price,
       Description = productDTO.Description,
       ImageSrc = productDTO.ImageSrc,
+      Quantity = productDTO.Quantity,
       CategoryId = productDTO.CategoryId
     };
 
@@ -75,6 +76,7 @@ public class ProductService : IProductService
     product.Price = productDTO.Price;
     product.Description = productDTO.Description;
     product.ImageSrc = productDTO.ImageSrc;
+    product.Quantity = productDTO.Quantity;
     product.CategoryId = productDTO.CategoryId;
 
     await _productRepository.UpdateProductAsync(product);
