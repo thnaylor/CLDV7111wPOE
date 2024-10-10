@@ -98,25 +98,15 @@ public class OrderService : IOrderService
 
   public async Task UpdateOrderStatusAsync(int orderId, int statusId)
   {
-    // Retrieve the order by orderId
     var order = await _orderRepository.GetOrderByIdAsync(orderId);
 
     if (order == null)
     {
-      throw new KeyNotFoundException($"Order with ID {orderId} not found.");
+      throw new Exception("Order not found.");
     }
 
-    // Check if the statusId exists in the Status table
-    var statusExists = await _orderRepository.StatusExistsAsync(statusId);
-    if (!statusExists)
-    {
-      throw new InvalidOperationException($"Invalid StatusId {statusId}. No matching status found in the Status table.");
-    }
-
-    // Update the order's StatusId
     order.StatusId = statusId;
 
-    // Save the changes
     await _orderRepository.SaveChangesAsync();
   }
 
